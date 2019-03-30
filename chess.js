@@ -1076,6 +1076,27 @@ var Chess = function(fen) {
     return '';
   }
 
+  function toString() {
+    for (var i = SQUARES.a8; i <= SQUARES.h1; i++) {
+      /* empty piece */
+      if (board[i] == null) {
+        s += '.';
+      } else {
+        var piece = board[i].type;
+        var color = board[i].color;
+        var symbol =
+          color === WHITE ? piece.toUpperCase() : piece.toLowerCase();
+        s += symbol;
+      }
+
+      if ((i + 1) & 0x88) {
+        i += 8;
+      }
+    }
+
+    return s;
+  }
+
   function ascii() {
     var s = '   +------------------------+\n';
     for (var i = SQUARES.a8; i <= SQUARES.h1; i++) {
@@ -1619,6 +1640,10 @@ var Chess = function(fen) {
 
     ascii: function() {
       return ascii();
+    },
+
+    toString: function() {
+      return toString();
     },
 
     turn: function() {
