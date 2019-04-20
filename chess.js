@@ -1762,6 +1762,15 @@ var Chess = function(fen) {
       }
 
       return move_history;
+    },
+
+    last_move: function(verbose) {
+      if (history.length < 1) return undefined;
+      const last = undo_move();
+      const move = verbose ? make_pretty(last) : move_to_san(last);
+
+      make_move(last);
+      return move;
     }
   };
 };
