@@ -48,8 +48,7 @@ var Chess = function(fen) {
 
   var SYMBOLS = 'pnbrqkPNBRQK';
 
-  var DEFAULT_POSITION =
-    'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+  var DEFAULT_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 
   var POSSIBLE_RESULTS = ['1-0', '0-1', '1/2-1/2', '*'];
 
@@ -172,7 +171,7 @@ var Chess = function(fen) {
    * starting position
    */
   if (typeof fen === 'undefined') {
-    load(DEFAULT_POSITION);
+    load(DEFAULT_FEN);
   } else {
     load(fen);
   }
@@ -195,7 +194,7 @@ var Chess = function(fen) {
   }
 
   function reset() {
-    load(DEFAULT_POSITION);
+    load(DEFAULT_FEN);
   }
 
   function load(fen, keep_headers) {
@@ -417,7 +416,7 @@ var Chess = function(fen) {
   function update_setup(fen) {
     if (history.length > 0) return;
 
-    if (fen !== DEFAULT_POSITION) {
+    if (fen !== DEFAULT_FEN) {
       header['SetUp'] = '1';
       header['FEN'] = fen;
     } else {
